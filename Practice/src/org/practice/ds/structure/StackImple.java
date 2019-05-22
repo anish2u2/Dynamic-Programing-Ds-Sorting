@@ -9,9 +9,11 @@ package org.practice.ds.structure;
  */
 public class StackImple<T> implements org.practice.ds.contracts.Stack<T> {
 
-	private static final int INITIAL_CAPACITY = 10;
+	private int initialCapacity = 10;
 
-	private Object[] data = new Object[INITIAL_CAPACITY];
+	private double loadFactor = 0.75;
+
+	private Object[] data = new Object[initialCapacity];
 
 	private int size = -1;
 
@@ -22,7 +24,12 @@ public class StackImple<T> implements org.practice.ds.contracts.Stack<T> {
 	 */
 	@Override
 	public void push(T data) {
-		this.data[++size] = data;
+		if (++size == initialCapacity) {
+			Object[] array = new Object[(int) (initialCapacity * loadFactor)];
+			System.arraycopy(this.data, 0, array, 0, this.data.length);
+			this.data = array;
+		}
+		this.data[size] = data;
 
 	}
 
@@ -34,8 +41,12 @@ public class StackImple<T> implements org.practice.ds.contracts.Stack<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T pop() {
-		// TODO Auto-generated method stub
-		return (T) data[size--];
+		if (size == -1) {
+			new RuntimeException("Stack underflow.");
+		}
+		T result = (T) data[size];
+		data[size--] = null;
+		return result;
 	}
 
 	/*
@@ -46,7 +57,7 @@ public class StackImple<T> implements org.practice.ds.contracts.Stack<T> {
 	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
-		return size == -1 ? true : false;
+		return size <= -1 ? true : false;
 	}
 
 	/*

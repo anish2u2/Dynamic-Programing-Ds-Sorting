@@ -7,7 +7,7 @@ package org.practice.ds.contracts;
  * @author Anish Singh
  *
  */
-public interface Stack<T extends Object> {
+public interface Stack<T> {
 
 	void push(T data);
 
