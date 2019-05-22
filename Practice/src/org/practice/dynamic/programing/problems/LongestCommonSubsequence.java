@@ -4,6 +4,12 @@
 package org.practice.dynamic.programing.problems;
 
 /**
+ * The longest common subsequence (LCS) problem is the problem of finding the
+ * longest subsequence that is present in given two sequences in the same order.
+ * i.e. find a longest sequence which can be obtained from the first original
+ * sequence by deleting some items, and from the second original sequence by
+ * deleting other items.
+ * 
  * @author Anish Singh
  *
  */
